@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>MyTime Page</title>
+
+    <!-- スタイルシート -->
+    <link href="./css/bootstrap.min.css" rel="stylesheet" />
+    <link href="./css/jquery-ui.css" rel="stylesheet" />
+    <link href="./css/jquery.timepicker.css" rel="stylesheet" />
+    <link href="./css/mytime.css" rel="stylesheet" />
+    <!--<link href="/Content/site.css" rel="stylesheet" />-->
+
+    <!-- ライブラリ -->
+    <script src="./scripts/jquery-3.1.1.js"></script>
+    <script src="./scripts/jquery-ui.js"></script>
+    <script src="./scripts/jquery.timepicker.js"></script>
+    <script src="./scripts/bootstrap.min.js"></script>
+
+</head>
+<body>
+    <div class="container">
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/">マイタイムカード 実験版</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/">ホーム</a></li>
+                        <li><a href="/Help">API</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="body" style="padding-top:70px" id="bodyContents">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-8">
+                        <p>日付と時間を登録します．徹夜明けの終了時間の登録は徹夜明けのチェックボックスをONしてください．</p>
+                    </div>
+                    <div class="col-sm-2"></div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">日付 <span class="glyphicon glyphicon-calendar"></span></label>
+                    <div class="col-sm-6">
+                        <!--DatePicker-->
+                        <input type="text" class="form-control" id="datepicker" />
+                    </div>
+                    <div class="col-sm-3"></div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">時間 <span class="mytime-glyphicon-clock"></span></label>
+                    <div class="col-sm-6">
+                        <input type="text" id="timepicker" class="form-control" />
+                    </div>
+                    <!--HH:SS OverNightCheck-->
+                    <div class="col-sm-3">
+                        <div class="checkbox"><label><input type="checkbox" />徹夜明け</label></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <!--Regist Start  Regist End-->
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-5"><button class="btn-info btn-lg btn-block">出勤登録 <span class="glyphicon glyphicon-log-in"></span></button></div>
+                    <div class="col-sm-5"><button class="btn-primary btn-lg btn-block">退勤登録 <span class="glyphicon glyphicon-log-out"></span></button></div>
+                </div>
+                <div class="form-group">
+                    <!--Return to Menu-->
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-10"><button class="btn-danger btn-lg btn-block">メニューに戻る <span class="glyphicon glyphicon-home"></span></button></div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        $(function () {
+            $('#datepicker').datepicker();
+        });
+        $(function () {
+            $('#timepicker').timepicker({ 'timeFormat': 'H:i', 'step': 15});
+        });
+    </script>
+</body>
+</html>

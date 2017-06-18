@@ -10,37 +10,27 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>Home Page</title>
+    <title>MyTime Page</title>
 
-    <!-- スタイルシート -->
+    <!-- スタイルシート -->    
+    <link href="~/Views/Home/css/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Views/Home/css/jquery.timepicker.css" rel="stylesheet" />
     <link href="~/Views/Home/css/bootstrap.min.css" rel="stylesheet" />
-    <!--<link href="/Content/site.css" rel="stylesheet" />-->
+    <link href="~/Views/Home/css/mytime.css" rel="stylesheet" />
     <!-- ライブラリ -->
     <script src="~/Views/Home/scripts/jquery-3.1.1.js"></script>
+    <script src="~/Views/Home/scripts/jquery-ui.js"></script>
+    <script src="~/Views/Home/scripts/jquery.timepicker.js"></script>
     <script src="~/Views/Home/scripts/bootstrap.min.js"></script>
+    <!-- サービスロジック -->
+    <script src="~/Views/Home/scripts/mytime.shell.js"></script>
+    <script>
+            $(document).ready(function () {
+                mytime.shell.initModule($('#mytime'));
+            });
+    </script>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/">マイタイムカード 実験版</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="/">ホーム</a></li>
-                    <li><a href="/Help">API</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="container body-content">
-        <div class="jumbotron"><h1>Main Menu</h1></div>
-
-    </div>
+    <div id="mytime"></div>
 </body>
 </html>

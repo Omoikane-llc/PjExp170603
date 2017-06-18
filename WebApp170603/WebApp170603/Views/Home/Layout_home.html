@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>MyTime Page</title>
+
+    <!-- スタイルシート -->
+    <link href="./css/bootstrap.min.css" rel="stylesheet" />
+    <link href="./css/jquery-ui.css" rel="stylesheet" />
+    <link href="./css/jquery.timepicker.css" rel="stylesheet" />
+    <link href="./css/mytime.css" rel="stylesheet" />
+    <!--<link href="/Content/site.css" rel="stylesheet" />-->
+    <!-- ライブラリ -->
+    <script src="./scripts/jquery-3.1.1.js"></script>
+    <script src="./scripts/jquery-ui.js"></script>
+    <script src="./scripts/jquery.timepicker.js"></script>
+    <script src="./scripts/bootstrap.min.js"></script>
+
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/">マイタイムカード 実験版</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/">ホーム</a></li>
+                        <li><a href="/Help">API</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container" style="padding-top:70px" id="bodyContents">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="mail1">所属コード</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="groupeName1" />
+                        <p class="help-block">所属プロジェクト/グループを入力して下さい(不明の場合は入力不要)</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="mail1">メールアドレス</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" id="mail1" />
+                        <p class="help-block">登録・照会するメールアドレスを入力して下さい</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-5"><button class="btn-info btn-lg btn-block">出退勤登録</button></div>
+                    <div class="col-sm-5"><button class="btn-primary btn-lg btn-block">月次照会</button></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

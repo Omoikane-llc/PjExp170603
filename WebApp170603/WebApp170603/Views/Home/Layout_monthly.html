@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>MyTime Page</title>
+
+    <!-- スタイルシート -->
+    <link href="./css/bootstrap.min.css" rel="stylesheet" />
+    <link href="./css/jquery-ui.css" rel="stylesheet" />
+    <link href="./css/jquery.timepicker.css" rel="stylesheet" />
+    <link href="./css/mytime.css" rel="stylesheet" />
+    <!--<link href="/Content/site.css" rel="stylesheet" />-->
+    <!-- ライブラリ -->
+    <script src="./scripts/jquery-3.1.1.js"></script>
+    <script src="./scripts/jquery-ui.js"></script>
+    <script src="./scripts/jquery.timepicker.js"></script>
+    <script src="./scripts/bootstrap.min.js"></script>
+
+</head>
+<body>
+    <div class="container">
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/">マイタイムカード 実験版</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/">ホーム</a></li>
+                        <li><a href="/Help">API</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="body" style="padding-top:70px" id="bodyContents">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr class="info">
+                            <td>日付</td>
+                            <td>出勤時間</td>
+                            <td>退勤時間</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2017/06/01</td>
+                            <td>09:30</td>
+                            <td>18:45</td>
+                        </tr>
+                        <tr>
+                            <td>2017/06/02</td>
+                            <td>09:45</td>
+                            <td>19:00</td>
+                        </tr>
+                        <tr>
+                            <td>2017/06/03</td>
+                            <td>10:00</td>
+                            <td>19:45</td>
+                        </tr>
+                        <tr>
+                            <td>2017/06/04</td>
+                            <td>08:30</td>
+                            <td>18:15</td>
+                        </tr>
+                        <tr>
+                            <td>2017/06/05</td>
+                            <td>09:30</td>
+                            <td>18:30</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <!--Down load-->
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-8"><button class="btn-primary btn-lg btn-block">ダウンロード <span class="glyphicon glyphicon-floppy-save"></span></button></div>
+                    <div class="col-sm-2"></div>
+                </div>
+                <div class="form-group">
+                    <!--Return to Menu-->
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-8"><button class="btn-danger btn-lg btn-block">メニューに戻る <span class="glyphicon glyphicon-home"></span></button></div>
+                    <div class="col-sm-2"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
