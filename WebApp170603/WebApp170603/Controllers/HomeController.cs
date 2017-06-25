@@ -4,13 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace WebApp170603.Controllers
-{
-    public class HomeController : Controller
-    {
+namespace WebApp170603.Controllers {
+    public class HomeController : Controller {
         // GET: Home
-        public ActionResult Index()
-        {
+        public ActionResult Index() {
             return View();
         }
     }

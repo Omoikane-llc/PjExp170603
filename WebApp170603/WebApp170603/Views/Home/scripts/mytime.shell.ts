@@ -12,6 +12,7 @@
         + '<span class="icon-bar"></span>'
         + '</button>'
         + '<a class="navbar-brand" href="/">マイタイムカード 実験版</a>'
+        + '<p class="navbar-text" id="login-name">ようこそ</p>'
         + '</div>'
         + '<div class="navbar-collapse collapse">'
         + '<ul class="nav navbar-nav">'
@@ -39,8 +40,8 @@
         + '</div>'
         + '<div class="form-group">'
         + '<div class="col-sm-2"></div>'
-        + '<div class="col-sm-5"><button class="btn-info btn-lg btn-block" id="btn-daily-update">出退勤登録</button></div>'
-        + '<div class="col-sm-5"><button class="btn-primary btn-lg btn-block" id="btn-monthly-download">月次照会</button></div>'
+        + '<div class="col-sm-5"><button type="button" class="btn-info btn-lg btn-block" id="btn-daily-update">出退勤登録</button></div>'
+        + '<div class="col-sm-5"><button type="button" class="btn-primary btn-lg btn-block" id="btn-monthly-download">月次照会</button></div>'
         + '</div>'
         + '</form>'
         + '</div>'
@@ -49,15 +50,18 @@
         initModule = ($mainId: JQuery) => {
             $mainId.html(this.htmlStructure);
 
-            //this.bodyContents = $mainId;
-            //mytime.home.initModule($mainId);
-            this.bindCrickHandle($mainId);
+            this.bodyContents = $mainId;
+            mytime.home.initModule($mainId);
+            mytime.daily.initModule($mainId);
+            mytime.monthly.initModule($mainId);
+            //this.bindCrickHandle($mainId);
         };
 
         private bindCrickHandle = ($bodyContent: JQuery): void => {
 
             $bodyContent.find('#btn-daily-update').bind('click', () => {
                 alert("click btn-daily-update");
+                //mytime.daily.loadDailyView(this.bodyContents);
             });
         }
     }
