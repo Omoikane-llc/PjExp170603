@@ -35,6 +35,7 @@
             this.bodyContents.empty().append(this.htmlStructure);
 
             this.bindCrickHandle(this.bodyContents);
+            $('#mail1').val($('#login-name').text());            
         }
 
         private bindCrickHandle = ($bodyContent: JQuery): void => {

@@ -43,6 +43,10 @@ namespace WebApp170603.Controllers {
                     res = Ac03putEndTime(data);
                     break;
 
+                case ConstMytime.AC04_MONTH_DATA:
+                    res = Ac04getMonthlyData(data);
+                    break;
+
                 default:
                     break;
 
@@ -69,9 +73,9 @@ namespace WebApp170603.Controllers {
             if (checkResult == 1) {
                 result = "checkOK";
             } else if (checkResult > 1) {
-                result = "checkNG_badId";
+                result = "checkNG 正しくないメールアドレスです";
             } else {
-                result = "checkNG_noId";
+                result = "checkNG メールアドレスの登録がありません";
             }
 
             return new JsonCarrier { GroupeName = data.GroupeName, Email0 = data.Email0, ActionResult = result };
@@ -86,7 +90,7 @@ namespace WebApp170603.Controllers {
             // なければinsert, あればupdat
             var recordTb02 = new Tb02DailyRecord_ {
                 Tb02DailyRecord_Id = tb02_Id,
-                Tb02DailyRecord_YYYYMMDD = tb02_YYYYMMDD,
+                Tb02DailyRecord_MMDDYYYY = tb02_YYYYMMDD,
                 Tb02DailyRecord_StartTimeStamp = data.StartDateTime,
                 Tb01Name_Id = tb01_Id
             };
@@ -119,14 +123,45 @@ namespace WebApp170603.Controllers {
 
             try {
                 var target = recordTb02.Single();
-                target.Tb02DailyRecord_EndTimeStamp = data.EndDateTime;
-                target.Tb02DailyRecord_Memo = data.MemoColumn;
+                var startTime = target.Tb02DailyRecord_StartTimeStamp;
+                if(startTime != null && startTime.Length > 0) {
+                    target.Tb02DailyRecord_EndTimeStamp = data.EndDateTime;
+                    target.Tb02DailyRecord_Memo = data.MemoColumn;
 
-                appDb.SaveChanges();
-                result = "processOK";
+                    appDb.SaveChanges();
+                    result = "processOK";
+                } else {
+                    result = "processNG 開始時間の登録がありません";
+                }
+
 
             } catch (System.SystemException ex) {
                 result = tb02_Id + " processNG " + ex.Message;
+            }
+
+            return new JsonCarrier { Email0 = tb01_Id, ActionResult = result };
+        }
+
+        private JsonCarrier Ac04getMonthlyData(JsonCarrier data) {
+            var result = "";
+            var tb01_Id = data.Email0;
+            var tb02_memo = data.MemoColumn;
+            var searchKey = tb02_memo.Substring(2, 6);
+
+            // 対象の月のレコードを返す
+            
+            try {
+                var recordTb02 = appDb.Tb02DailyRecord
+                                    .Where(t2 => t2.Tb01Name_Id == tb01_Id)
+                                    .Where(t2 => t2.Tb02DailyRecord_MMDDYYYY.Substring(0, 2) == tb02_memo.Substring(0, 2))
+                                    .Where(t2 => t2.Tb02DailyRecord_MMDDYYYY.Substring(4, 4) == tb02_memo.Substring(4, 4));
+
+                var monthlyList = recordTb02.Select(t2 => (t2.Tb02DailyRecord_MMDDYYYY + " " + t2.Tb02DailyRecord_StartTimeStamp + " " + t2.Tb02DailyRecord_EndTimeStamp)).ToArray();
+
+                result = "processOK";
+                return new JsonCarrier { Email0 = tb01_Id, ActionResult = result, MonthlyList = monthlyList };
+            } catch(System.SystemException ex) {
+                result = tb01_Id + " processNG " + ex.Message;
             }
 
             return new JsonCarrier { Email0 = tb01_Id, ActionResult = result };
@@ -154,6 +189,9 @@ namespace WebApp170603.Controllers {
 
         [JsonProperty(PropertyName = "memoColumn")]
         public string MemoColumn { get; set; }
+
+        [JsonProperty(PropertyName = "monthlyList")]
+        public string[] MonthlyList { get; set; }
 
         [JsonProperty(PropertyName = "actionResult")]
         public string ActionResult { get; set; }

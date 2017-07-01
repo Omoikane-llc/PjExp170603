@@ -60,11 +60,13 @@
 
                 //the same as 'tap' event
                 var loginName = $('#login-name').text();
+                var dateTime = this.getDateTimeInput($bodyContent);
 
                 if ($bodyContent.find('#check-box1').prop('checked')) {
                     alert("徹夜明けが入力されています");
+                    dateTime = "fail";
                 }
-                var dateTime = this.getDateTimeInput($bodyContent);
+                
 
                 if (dateTime != "fail") {
                     $.ajax({
@@ -77,6 +79,7 @@
                         if (data.actionResult == "processOK") {
                             //alert("data.actionResult " + data.actionResult);
                             daily.loadDailyView(this.bodyContents);
+                            alert("登録を完了しました");
                         } else {
                             alert("response is " + data.actionResult + " " + textStatus);
                         }
@@ -99,7 +102,7 @@
                 var dateTime = this.getDateTimeInput($bodyContent);
 
                 if (dateTime != "fail") {
-                    alert("email0: loginName, endDateTime: dateTime, memoColumn: memo " + loginName +" " + dateTime + " " + memo);
+                    //alert("email0: loginName, endDateTime: dateTime, memoColumn: memo " + loginName +" " + dateTime + " " + memo);
                     $.ajax({
                         type: mytime.Const.POST,
                         url: "/api/MytimeApi/",
@@ -110,6 +113,7 @@
                         if (data.actionResult == "processOK") {
                             //alert("data.actionResult " + data.actionResult);
                             daily.loadDailyView(this.bodyContents);
+                            alert("登録を完了しました");
                         } else {
                             alert("response is " + data.actionResult + " " + textStatus);
                         }
@@ -124,7 +128,7 @@
             });
 
             $bodyContent.find('#btn-goback-home').bind('click', () => {
-                alert("click btn-goback-home");
+                //alert("click btn-goback-home");
                 home.loadHomeView(this.bodyContents);
             });
         };
@@ -135,6 +139,11 @@
             var overNight: boolean = $bodyContent.find('#check-box1').prop('checked'); // true or false
 
             // validationはここに挿入 失敗時はreturn "fail"
+            var dateCheck = mytime.utils.validate("MM/DD/YYYY", inputDate);
+            var timeCheck = mytime.utils.validate("hh:mm", inputDate);
+            if (dateCheck == "fail" || timeCheck == "fail") {
+                return "fail";
+            }
 
             if (overNight) {
                 inputDate = mytime.utils.getNextDate(inputDate);

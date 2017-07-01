@@ -22,7 +22,7 @@
         + '</div>'
         + '</div>'
         + '</div>'
-        + '<div class="container" style="padding-top:70px" id="bodyContents">'
+        + '<div class="container" style="padding-top:100px" id="bodyContents">'
         + '<form class="form-horizontal">'
         + '<div class="form-group">'
         + '<label class="col-sm-2 control-label" for="mail1">所属コード</label>'
@@ -57,13 +57,13 @@
             //this.bindCrickHandle($mainId);
         };
 
-        private bindCrickHandle = ($bodyContent: JQuery): void => {
+        //private bindCrickHandle = ($bodyContent: JQuery): void => {
 
-            $bodyContent.find('#btn-daily-update').bind('click', () => {
-                alert("click btn-daily-update");
-                //mytime.daily.loadDailyView(this.bodyContents);
-            });
-        }
+        //    $bodyContent.find('#btn-daily-update').bind('click', () => {
+        //        alert("click btn-daily-update");
+        //        //mytime.daily.loadDailyView(this.bodyContents);
+        //    });
+        //}
     }
     export var shell = new Shell();
 }

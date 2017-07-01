@@ -14,6 +14,7 @@
         startDateTime: string;
         endDateTime: string;
         memoColumn: string;
+        monthlyList: string[];
         actionResult: string;
     }
 

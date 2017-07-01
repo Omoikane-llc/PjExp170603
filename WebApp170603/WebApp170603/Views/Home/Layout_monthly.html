@@ -40,6 +40,12 @@
             </div>
         </div>
         <div class="body" style="padding-top:70px" id="bodyContents">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <div class="col-sm-6"><button class="btn-info btn-lg btn-block"><span class="glyphicon glyphicon-arrow-left"></span> 先月を照会</button></div>
+                    <div class="col-sm-6"><button class="btn-primary btn-lg btn-block">今月を照会 <span class="glyphicon glyphicon-arrow-right"></span></button></div>
+                </div>
+            </form>
             <div class="table-responsive">
                 <table class="table table-hover">
                     <thead>
@@ -82,7 +88,7 @@
                 <div class="form-group">
                     <!--Down load-->
                     <div class="col-sm-2"></div>
-                    <div class="col-sm-8"><button class="btn-primary btn-lg btn-block">ダウンロード <span class="glyphicon glyphicon-floppy-save"></span></button></div>
+                    <div class="col-sm-8"><a class="btn btn-primary btn-lg btn-block" id="btn-download" href="#" download="mytimeTable.csv" onclick="handleDownload()">ダウンロード <span class="glyphicon glyphicon-floppy-save"></span></a></div>
                     <div class="col-sm-2"></div>
                 </div>
                 <div class="form-group">
@@ -94,5 +100,25 @@
             </form>
         </div>
     </div>
+    <script>
+            $(function () {
+                $('#datepicker').datepicker();
+            });
+
+            function handleDownload() {
+                var bom = new Uint8Array([0xEF, 0xBB, 0xBF]);
+                var content = 'テスト用0123456789+-*%$@';
+                var blob = new Blob([bom, content], { "type": "text/csv" });
+
+                if (window.navigator.msSaveBlob) {
+                    window.navigator.msSaveBlob(blob, "mytimeTable.csv");
+
+                    // msSaveOrOpenBlobの場合はファイルを保存せずに開ける
+                    //window.navigator.msSaveOrOpenBlob(blob, "mytimeTable.csv");
+                } else {
+                    document.getElementById("btn-download").href = window.URL.createObjectURL(blob);
+                }
+            }
+    </script>
 </body>
 </html>

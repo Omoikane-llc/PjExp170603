@@ -58,7 +58,13 @@ namespace mytime {
                     break;
 
                 case "hh:mm":
-
+                    var temp: string[] = inputVal.split(":");
+                    var chk = (temp.length == 2)
+                        && (Number(temp[0]) < 24)
+                        && (Number(temp[1]) < 60);
+                    if (!chk) {
+                        result = "fail";
+                    }
                     break;
 
                 case "emailAddress":
@@ -70,6 +76,32 @@ namespace mytime {
                     break;
             }
             return result;
+        }
+
+        getMMDDYYYY = (nowOrlast:string) => {
+            var dt = new Date();
+            var offsetMonth = 1;
+            if (nowOrlast === "last") {
+                offsetMonth = 0;
+            }
+            var mm = dt.getMonth() + offsetMonth;
+            var MM=""
+            if (mm < 10) {
+                MM = "0" + mm;
+            } else {
+                MM = "" + mm;
+            }
+            var dd = dt.getDate();
+            var DD = "";
+            if (dd < 10) {
+                DD = "0" + dd;
+            } else {
+                DD = "" + dd;
+            }
+            var yyyy = dt.getFullYear();
+
+            //alert(MM + "" + DD + "" + yyyy);
+            return (MM + "" + DD + "" + yyyy);
         }
     }
     export var utils = new Utils();
