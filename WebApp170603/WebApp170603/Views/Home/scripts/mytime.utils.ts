@@ -59,6 +59,7 @@ namespace mytime {
 
                 case "hh:mm":
                     var temp: string[] = inputVal.split(":");
+                    //alert("hh:mm " + temp[0] +" " + temp[1])
                     var chk = (temp.length == 2)
                         && (Number(temp[0]) < 24)
                         && (Number(temp[1]) < 60);

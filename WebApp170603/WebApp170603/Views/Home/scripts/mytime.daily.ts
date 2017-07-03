@@ -140,7 +140,7 @@
 
             // validationはここに挿入 失敗時はreturn "fail"
             var dateCheck = mytime.utils.validate("MM/DD/YYYY", inputDate);
-            var timeCheck = mytime.utils.validate("hh:mm", inputDate);
+            var timeCheck = mytime.utils.validate("hh:mm", inputTime);
             if (dateCheck == "fail" || timeCheck == "fail") {
                 return "fail";
             }
